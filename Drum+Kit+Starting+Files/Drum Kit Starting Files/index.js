@@ -5,14 +5,17 @@ for(var i = 0; i < drums; i++){
 
        const buttonValue = this.innerHTML; 
        
-       playSound(buttonValue)
+       playSound(buttonValue);
+       addAnimation(buttonValue);
        
        
-    })
-}
+    });
+};
 
 document.addEventListener("keypress", function(event){
-    playSound(event.key)
+    
+    playSound(event.key);
+    addAnimation(event.key);
 })
 
 function playSound(key){
@@ -48,4 +51,13 @@ function playSound(key){
             break;
     }
 
+}
+
+function addAnimation(currentKey){
+   
+    const activeButton = document.querySelector("." + currentKey); 
+    activeButton.classList.add("pressed");
+    setTimeout(function (){
+        activeButton.classList.remove("pressed"), 100
+    })
 }
